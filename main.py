@@ -79,9 +79,9 @@ def main():
         description="Do a Meet-in-the-Middle attack on PRESENT24 using 2 (plain, cypher) pairs"
     )
     attack_parser.add_argument('-p1', '--plain1', type=functools.partial(int, base=16), help="First plaintext (in hex format)", default=PLAIN1)
-    attack_parser.add_argument('-c1', '--cypher1', type=functools.partial(int, base=16), help="First plaintext (in hex format)", default=CYPHER1)
+    attack_parser.add_argument('-c1', '--cypher1', type=functools.partial(int, base=16), help="First cypher (in hex format)", default=CYPHER1)
     attack_parser.add_argument('-p2', '--plain2', type=functools.partial(int, base=16), help="Second plaintext (in hex format)", default=PLAIN2)
-    attack_parser.add_argument('-c2', '--cypher2', type=functools.partial(int, base=16), help="Second plaintext (in hex format)", default=CYPHER2)
+    attack_parser.add_argument('-c2', '--cypher2', type=functools.partial(int, base=16), help="Second cypher (in hex format)", default=CYPHER2)
     attack_parser.set_defaults(func=call_attack)
 
     opt_atk_parser = subparsers.add_parser(
@@ -91,9 +91,9 @@ def main():
         description="Do a Meet-in-the-Middle attack on PRESENT24 using 2 (plain, cypher) pairs (faster)"
     )
     opt_atk_parser.add_argument('-p1', '--plain1', type=functools.partial(int, base=16), help="First plaintext (in hex format)", default=PLAIN1)
-    opt_atk_parser.add_argument('-c1', '--cypher1', type=functools.partial(int, base=16), help="First plaintext (in hex format)", default=CYPHER1)
+    opt_atk_parser.add_argument('-c1', '--cypher1', type=functools.partial(int, base=16), help="First cypher (in hex format)", default=CYPHER1)
     opt_atk_parser.add_argument('-p2', '--plain2', type=functools.partial(int, base=16), help="Second plaintext (in hex format)", default=PLAIN2)
-    opt_atk_parser.add_argument('-c2', '--cypher2', type=functools.partial(int, base=16), help="Second plaintext (in hex format)", default=CYPHER2)
+    opt_atk_parser.add_argument('-c2', '--cypher2', type=functools.partial(int, base=16), help="Second cypher (in hex format)", default=CYPHER2)
     opt_atk_parser.set_defaults(func=call_optimized_attack)
 
     try:
