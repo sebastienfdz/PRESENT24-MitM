@@ -6,7 +6,7 @@ This project was developed as part of a course at **Université de Versailles Sa
 
 ## Description
 
-This Python program implements encryption, decryption, and a **Meet-In-The-Middle (MitM) attack** on the simplified **PRESENT24** cipher. PRESENT24 is a reduced version of the **PRESENT** encryption algorithm that operates on 24-bit inputs and keys. The program allows users to:
+This program implements in python encryption, decryption, and a **Meet-In-The-Middle (MitM) attack** (in python and rust) on the simplified **PRESENT24** cipher. PRESENT24 is a reduced version of the **PRESENT** encryption algorithm that operates on 24-bit inputs and keys. The program allows users to:
 
 - Encrypt a 24-bit plaintext with a 24-bit key.
 - Decrypt a 24-bit ciphertext with a 24-bit key.
@@ -22,7 +22,7 @@ Notably it requires the `numba` module, which is used to speed up the program by
 To install them, you can run:
 
 ```bash
-pip install -r requirements.txt
+% pip install -r requirements.txt
 ```
 
 
@@ -34,7 +34,7 @@ The program supports the following commands:
 Encrypts a 24-bit plaintext using a 24-bit key.
 
 ```bash
-python main.py encrypt -p <plaintext> -k <key>
+% python main.py encrypt -p <plaintext> -k <key>
 ```
 
 - -p, --plain: Plaintext to encrypt (in hexadecimal format).
@@ -44,7 +44,7 @@ python main.py encrypt -p <plaintext> -k <key>
 Decrypts a 24-bit ciphertext using a 24-bit key.
 
 ```bash
-python main.py decrypt -c <ciphertext> -k <key>
+% python main.py decrypt -c <ciphertext> -k <key>
 ```
 
 - -c, --cypher: Ciphertext to decrypt (in hexadecimal format).
@@ -54,7 +54,7 @@ python main.py decrypt -c <ciphertext> -k <key>
 Performs a MitM attack on the PRESENT24 cipher using two known plaintext-ciphertext pairs, taking $\approx$ 45min.
 
 ```bash
-python main.py attack -p1 <plaintext1> -c1 <ciphertext1> -p2 <plaintext2> -c2 <ciphertext2>
+% python main.py attack -p1 <plaintext1> -c1 <ciphertext1> -p2 <plaintext2> -c2 <ciphertext2>
 ```
 
 - -p1, --plain1: First plaintext (in hexadecimal format).
@@ -66,7 +66,7 @@ python main.py attack -p1 <plaintext1> -c1 <ciphertext1> -p2 <plaintext2> -c2 <c
 Performs a MitM attack faster than the original one, taking $\approx$ 30s.
 
 ```bash
-python main.py fast -p1 <plaintext1> -c1 <ciphertext1> -p2 <plaintext2> -c2 <ciphertext2>
+% python main.py fast -p1 <plaintext1> -c1 <ciphertext1> -p2 <plaintext2> -c2 <ciphertext2>
 ```
 
 - The arguments are the same as for the standard attack.
@@ -77,27 +77,27 @@ python main.py fast -p1 <plaintext1> -c1 <ciphertext1> -p2 <plaintext2> -c2 <cip
 1. Encryption Example:
 
 ```bash
-python main.py e -p 0xf955b9 -k d1bd2d
+% python main.py e -p 0xf955b9 -k d1bd2d
 ```
 Encrypts the plaintext 0xf955b9 with the key 0xd1bd2d.
 
 2. Decryption Example:
 
 ```bash
-python main.py d -c 47a929 -k 0xd1bd2d
+% python main.py d -c 47a929 -k 0xd1bd2d
 ```
 Decrypts the ciphertext 0x47a929 with the key 0xd1bd2d.
 
 3. Standard MitM Attack Example:
 
 ```bash
-python main.py a -p1 0xd41330 -c1 2f4a58 -p2 0x9d0af2 -c2 0x57c9d6
+% python main.py a -p1 0xd41330 -c1 2f4a58 -p2 0x9d0af2 -c2 0x57c9d6
 ```
 
 4. Optimized MitM Attack Example:
 
 ```bash
-python main.py fast -p1 0xd41330 -c1 0x2f4a58 -p2 9d0af2 -c2 0x57c9d6
+% python main.py fast -p1 0xd41330 -c1 0x2f4a58 -p2 9d0af2 -c2 0x57c9d6
 ```
 Output:
 ```bash
@@ -113,7 +113,6 @@ Total Meet-in-the-Middle attack time: 30.9s
 
 ## Default Values
 
-
 If no values are provided, the program uses the following as defaults:
 - For the encryption/decryption:
   - Plaintext: 0xf955b9
@@ -124,3 +123,28 @@ If no values are provided, the program uses the following as defaults:
   - Ciphertext 1 (CYPHER1): 0x2f4a58
   - Plaintext 2 (PLAIN2): 0x9d0af2
   - Ciphertext 2 (CYPHER2): 0x57c9d6
+
+
+## Rust Implementation
+
+To have a reference time, the attack has been implemented in rust without much parallelism in order to be a fair comparison.
+
+
+### Rust Usage
+
+The ```--realease ``` compilation option is recommended, because it significantly reduces the attack time.
+
+```bash
+% cargo run [--release] [-- [--P <HEX>] [--cipher1 <HEX>] [--plain2 <HEX>] [--c <HEX>]]
+```
+With ```<HEX>``` a 24-bit hexadecimal number, e.g. ```0x1A2B3C``` or ```123ABC```.
+
+
+### Comparison
+
+The time using the python version was 31s, with the rust one we managed to reach 4s (and 0.8s with parallelism).
+
+
+| Python | Rust |
+|:------:|:----:|
+|   31s  |  4s  |
