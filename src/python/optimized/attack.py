@@ -3,7 +3,7 @@ from time import process_time
 
 from src.optimized.key_schedule import key_schedule
 
-K = 2**24
+K = 1 << 24
 
 
 @njit
