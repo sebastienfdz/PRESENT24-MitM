@@ -1,7 +1,7 @@
 """ Déchiffrement de PRESENT24
 """
 
-from src.original.key_schedule import key_scheduler
+from src.python.original.key_schedule import key_scheduler
 
 # Initialisation des tables de Substitution et Permutation
 SBOX = [

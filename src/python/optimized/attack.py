@@ -1,7 +1,7 @@
 from numba import njit
 from time import process_time
 
-from src.optimized.key_schedule import key_schedule
+from src.python.optimized.key_schedule import key_schedule
 
 K = 1 << 24
 

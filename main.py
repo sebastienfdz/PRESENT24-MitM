@@ -6,10 +6,10 @@ import argparse
 import functools
 from time import process_time
 
-from src.original.encryption import encryption
-from src.original.decryption import decryption
-from src.original.attack import attack_2present24
-from src.optimized.attack import mitm_attack_present24
+from src.python.original.encryption import encryption
+from src.python.original.decryption import decryption
+from src.python.original.attack import attack_2present24
+from src.python.optimized.attack import mitm_attack_present24
 
 # Default values of plaintext-ciphertext pairs for the MitM and test values for encryption-decryption.
 PLAIN1, CYPHER1 = 0xd41330, 0x2f4a58

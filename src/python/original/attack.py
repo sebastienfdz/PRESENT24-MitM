@@ -16,9 +16,9 @@ Couple de clés (k1, k2) retrouvés (3d93b5, 3aa01a)
     clé secrète recherchée
 """
 
-from src.original.encryption import encryption_with_round_keys, doublepresent24
-from src.original.decryption import decryption_with_round_keys
-from src.original.key_schedule import key_scheduler
+from src.python.original.encryption import encryption_with_round_keys, doublepresent24
+from src.python.original.decryption import decryption_with_round_keys
+from src.python.original.key_schedule import key_scheduler
 
 K = 2**24
 
