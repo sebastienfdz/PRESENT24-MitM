@@ -1,0 +1,14 @@
+[package]
+name = "rust"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+debug = true
+
+[dependencies]
+clap = { version = "4.0", features = ["derive"] }
+rayon = "1.10"
+
+[[bin]]
+name = "rust"
