@@ -17,7 +17,9 @@ The Meet-In-The-Middle attack can be performed using either a standard or an opt
 
 ## Requirements
 
-The program requires **Python $\ge$ 3.9** and the dependencies listed in `requirements.txt`. To install them, you can run:
+The project requires **Python $\ge$ 3.9** and the dependencies listed in `requirements.txt`.
+Notably it requires the `numba` module, which is used to speed up the program by using Just-In-Time (JIT) compilation.
+To install them, you can run:
 
 ```bash
 pip install -r requirements.txt
